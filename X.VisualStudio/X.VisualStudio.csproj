@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Discover Visual Studio solution project assemblies.</Description>
+    <PackageTags>x-utils ioc visualstudio</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Dmitry Nogin</Authors>
+    <Product>X Utils</Product>
+    <PackageProjectUrl>https://github.com/dmitrynogin/x-utils</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/dmitrynogin/x-utils/blob/master/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Solution.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Solution.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Solution.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Solution.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>

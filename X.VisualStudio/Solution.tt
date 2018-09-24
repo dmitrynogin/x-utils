@@ -1,0 +1,66 @@
+﻿<#@ template debug="false" hostSpecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDte" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="System.Reflection" #> 
+<#@ import namespace="EnvDTE" #> 
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Diagnostics;
+
+namespace X.VisualStudio
+{
+    public static class Solution 
+    {
+        static IEnumerable<string> AssemblyNames => new[] {
+            <#= String.Join(", ", from name in new SolutionAssemblyNames(Host)
+                                  select $"\"{name}\"") #>
+        };
+
+        public static IEnumerable<Assembly> Assemblies => AssemblyNames
+            .Select(Load)
+            .Where(a => a != null);
+
+        [DebuggerHidden]
+        static Assembly Load(string assemblyName)
+        {
+            try
+            {
+                return Assembly.Load(new AssemblyName(assemblyName));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+    }
+}
+
+<#+
+
+    class SolutionAssemblyNames : IEnumerable<string>
+    {
+        public SolutionAssemblyNames(ITextTemplatingEngineHost host)
+        {
+            Host = host;
+        }
+
+        public IEnumerator<string> GetEnumerator() => Assemblies.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerable<string> Assemblies => Projects
+            .Select(p => p?.Properties?.Item("AssemblyName")?.Value as string)
+            .Distinct().Where(a => !string.IsNullOrWhiteSpace(a));
+
+        IEnumerable<Project> Projects => VisualStudio.Solution.Projects.OfType<Project>();
+        DTE VisualStudio => (Host as IServiceProvider).GetService(typeof(DTE)) as DTE;
+        ITextTemplatingEngineHost Host { get; }
+    }
+#>

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Utility and common base types.</Description>
+    <PackageTags>x-utils utils</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Dmitry Nogin</Authors>
+    <Product>X Utils</Product>
+    <PackageProjectUrl>https://github.com/dmitrynogin/x-utils</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/dmitrynogin/x-utils/blob/master/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
+
+</Project>
