@@ -12,4 +12,8 @@
     <PackageLicenseUrl>https://github.com/dmitrynogin/x-utils/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
 </Project>
