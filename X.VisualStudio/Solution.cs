@@ -11,7 +11,7 @@ namespace X.VisualStudio
     public static class Solution 
     {
         static IEnumerable<string> AssemblyNames => new[] {
-            "X.IoC", "X.IoC.Autofac", "X.VisualStudio"
+            "X.IoC", "X.IoC.Autofac", "X.VisualStudio", "X.ComponentModel"
         };
 
         public static IEnumerable<Assembly> Assemblies => AssemblyNames

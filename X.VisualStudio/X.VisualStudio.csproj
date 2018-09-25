@@ -28,6 +28,7 @@
     <None Update="Solution.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <Pack>True</Pack>
+      <LastGenOutput>Solution.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
