@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.IoC.Autofac", "X.IoC.Auto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.VisualStudio", "X.VisualStudio\X.VisualStudio.csproj", "{86153208-FB03-4ECE-9D11-7DD5FEEF2BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.ComponentModel", "X.ComponentModel\X.ComponentModel.csproj", "{0FD7AE13-858A-480A-9527-A70C5EA480E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.ComponentModel", "X.ComponentModel\X.ComponentModel.csproj", "{0FD7AE13-858A-480A-9527-A70C5EA480E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Sockets", "X.Sockets\X.Sockets.csproj", "{5F520C5F-5617-47DD-BEDC-B8A81106847A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Sockets.Tests", "X.Sockets.Tests\X.Sockets.Tests.csproj", "{0EDD1482-FDB1-460C-B039-41FA91A1EE91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{0FD7AE13-858A-480A-9527-A70C5EA480E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD7AE13-858A-480A-9527-A70C5EA480E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD7AE13-858A-480A-9527-A70C5EA480E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F520C5F-5617-47DD-BEDC-B8A81106847A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F520C5F-5617-47DD-BEDC-B8A81106847A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F520C5F-5617-47DD-BEDC-B8A81106847A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F520C5F-5617-47DD-BEDC-B8A81106847A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EDD1482-FDB1-460C-B039-41FA91A1EE91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EDD1482-FDB1-460C-B039-41FA91A1EE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EDD1482-FDB1-460C-B039-41FA91A1EE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EDD1482-FDB1-460C-B039-41FA91A1EE91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
