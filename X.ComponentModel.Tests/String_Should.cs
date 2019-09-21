@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -6,6 +7,13 @@ namespace X.ComponentModel.Tests
     [TestClass]
     public class String_Should
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Validate()
+        {
+            var name = new ProductName("  ");
+        }
+
         [TestMethod]
         public void Format()
         {
