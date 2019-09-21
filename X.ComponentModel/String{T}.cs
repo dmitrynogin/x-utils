@@ -1,30 +1,38 @@
-﻿using System;
-using System.Collections;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using X.ComponentModel.Converters;
+using static System.String;
 
 namespace X.ComponentModel
 {
-    public class OrdinalIgnoreCase : IEquatable<OrdinalIgnoreCase>
+    [JsonConverter(typeof(StringJsonConverter))]
+    public abstract class String<T> : ValueObject<T>
+        where T: String<T>
     {
-        public static StringComparer Comparer { get; } = StringComparer.OrdinalIgnoreCase;
+        protected static string Trim(string text) => text?.Trim();
+        protected static string EmptyIfNull(string text) => text ?? Empty;
+        protected static string Upper(string text) => text?.ToUpper();
+        protected static string Lower(string text) => text?.ToLower();
+        
+        protected static string NotNull(string text) => 
+            text != null ? text : throw new ArgumentNullException(nameof(text));
+        protected static string NotNullOrWhitespace(string text) => 
+            !IsNullOrWhiteSpace(text) ? text : throw new ArgumentException("Text is required.", nameof(text));
+        protected static string NotNullOrEmpty(string text) =>
+            !IsNullOrEmpty(text) ? text : throw new ArgumentException("Text is required.", nameof(text));
 
-        public static implicit operator OrdinalIgnoreCase(string s) => new OrdinalIgnoreCase(s);
-        public static implicit operator string(OrdinalIgnoreCase s) => s.Text;
+        public static implicit operator string(String<T> s) => s?.Text;
 
-        public OrdinalIgnoreCase(string text) => Text = text;
-        public string Text { get; }
+        protected String(string text, params Func<string, string>[] actions) => 
+            Text = actions.Aggregate(text, (acc, f) => f(acc));
 
-        public override int GetHashCode() => Comparer.GetHashCode(Text);
-        public override bool Equals(object obj) => Equals(obj as OrdinalIgnoreCase);
-        public virtual bool Equals(OrdinalIgnoreCase other) => Comparer.Equals(Text, other.Text);
-
-        public static bool operator ==(OrdinalIgnoreCase left, OrdinalIgnoreCase right) =>
-            Equals(left, right);
-
-        public static bool operator !=(OrdinalIgnoreCase left, OrdinalIgnoreCase right) =>
-            !Equals(left, right);
+        public string Text { get; set; }
 
         public override string ToString() => Text;
+
+        protected override IEnumerable<object> EqualityCheckAttributes => 
+            new[] { Text };
     }
 }

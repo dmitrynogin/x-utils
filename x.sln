@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.VisualStudio", "X.VisualS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.ComponentModel", "X.ComponentModel\X.ComponentModel.csproj", "{0FD7AE13-858A-480A-9527-A70C5EA480E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Endpoints", "X.Endpoints\X.Endpoints.csproj", "{76080CB3-0772-494B-BCC3-C17616E9E7FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Endpoints", "X.Endpoints\X.Endpoints.csproj", "{76080CB3-0772-494B-BCC3-C17616E9E7FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Endpoints.Tests", "X.Endpoints.Tests\X.Endpoints.Tests.csproj", "{32E2AACB-A4CA-41FA-A58C-8C6322BB6B8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Endpoints.Tests", "X.Endpoints.Tests\X.Endpoints.Tests.csproj", "{32E2AACB-A4CA-41FA-A58C-8C6322BB6B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.ComponentModel.Tests", "X.ComponentModel.Tests\X.ComponentModel.Tests.csproj", "{B943B421-5BD8-467C-9CF5-82FC5FC98C0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{32E2AACB-A4CA-41FA-A58C-8C6322BB6B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32E2AACB-A4CA-41FA-A58C-8C6322BB6B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32E2AACB-A4CA-41FA-A58C-8C6322BB6B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B943B421-5BD8-467C-9CF5-82FC5FC98C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B943B421-5BD8-467C-9CF5-82FC5FC98C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B943B421-5BD8-467C-9CF5-82FC5FC98C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B943B421-5BD8-467C-9CF5-82FC5FC98C0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
