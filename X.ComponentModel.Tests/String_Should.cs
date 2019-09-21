@@ -46,7 +46,7 @@ namespace X.ComponentModel.Tests
     {
         public Dto(ProductName name)
         {
-            Name = name;
+            Name = name ?? throw new System.ArgumentNullException(nameof(name));
         }
 
         public ProductName Name { get; }
