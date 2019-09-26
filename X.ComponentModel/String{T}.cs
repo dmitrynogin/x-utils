@@ -24,15 +24,18 @@ namespace X.ComponentModel
 
         protected static string Upper(string text) => text?.ToUpper();
         protected static string Lower(string text) => text?.ToLower();
-        
-        protected static string NotNull(string text) => 
-            text == null ? throw new TextException() :
-            text;
+
+        protected static string NotNull(string text) =>
+            text ?? throw new TextException();
         protected static string NotNullOrWhitespace(string text) =>
             IsNullOrWhiteSpace(text) ? throw new TextException() :
             text;
         protected static string NotNullOrEmpty(string text) =>
             IsNullOrEmpty(text) ? throw new TextException() : 
+            text;
+        protected static string NoSpace(string text) =>
+            text == null ? null :
+            text.Contains(' ') ? throw new TextException() :
             text;
         protected static string NotMultiline(string text) =>
             text == null ? null :
@@ -55,7 +58,7 @@ namespace X.ComponentModel
     public class TextException : Exception
     {
         public TextException([CallerMemberName] string rule = null)
-            : base($"Text must be {rule}.")
+            : base($"Must be {rule}.")
         {
         }
     }
