@@ -8,7 +8,7 @@ namespace X.ComponentModel.Tests
     public class String_Should
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(TextException))]
         public void Validate()
         {
             var name = new ProductName("  ");
