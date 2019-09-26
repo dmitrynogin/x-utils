@@ -13,5 +13,12 @@ namespace X.ComponentModel.Tests
             var line = (Line)"\n test\n ";
             Assert.AreEqual("test", line);
         }
+
+        [TestMethod]
+        public void Normalize()
+        {
+            var line = (Line)"line 1\nline 2";
+            Assert.AreEqual("line 1 line 2", line);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace X.ComponentModel
     {
         public static explicit operator Line(string text) => new Line(text);
         public Line(string text) 
-            : base(text, NotNull, Trim, NotMultiline)
+            : base(text, EmptyIfNull, Trim, SpaceIfNewLine)
         {
         }
     }
@@ -19,16 +19,7 @@ namespace X.ComponentModel
     {
         public static explicit operator LineOrNull(string text) => new LineOrNull(text);
         public LineOrNull(string text)
-            : base(text, Trim, NotMultiline)
-        {
-        }
-    }
-
-    public class LineOrEmpty : String<LineOrEmpty>
-    {
-        public static explicit operator LineOrEmpty(string text) => new LineOrEmpty(text);
-        public LineOrEmpty(string text)
-            : base(text, EmptyIfNull, Trim, NotMultiline)
+            : base(text, NullIfEmpty, Trim, SpaceIfNewLine)
         {
         }
     }

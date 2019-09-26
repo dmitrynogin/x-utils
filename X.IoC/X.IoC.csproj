@@ -10,6 +10,7 @@
     <Product>X Utils</Product>
     <PackageProjectUrl>https://github.com/dmitrynogin/x-utils</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dmitrynogin/x-utils/blob/master/LICENSE</PackageLicenseUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>

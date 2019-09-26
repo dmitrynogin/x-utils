@@ -15,6 +15,13 @@ namespace X.ComponentModel
     {
         protected static string Trim(string text) => text?.Trim();
         protected static string EmptyIfNull(string text) => text ?? Empty;
+        protected static string NullIfEmpty(string text) => IsNullOrWhiteSpace(text) ? null : text;
+        protected static string SpaceIfNewLine(string text) => text
+            ?.Replace("\n\r", " ")
+            ?.Replace("\r\n", " ")
+            ?.Replace("\r", " ")
+            ?.Replace("\n", " ");            
+
         protected static string Upper(string text) => text?.ToUpper();
         protected static string Lower(string text) => text?.ToLower();
         
@@ -29,7 +36,7 @@ namespace X.ComponentModel
             text;
         protected static string NotMultiline(string text) =>
             text == null ? null :
-            text.Contains(NewLine) ? throw new TextException() :
+            text.Contains('\n') || text.Contains('\r') ? throw new TextException() :
             text;
 
         public static implicit operator string(String<T> s) => s?.Text;
