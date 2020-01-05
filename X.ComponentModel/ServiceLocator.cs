@@ -26,8 +26,11 @@ namespace System
 
         static Type GetFactory(Uri uri)
         {
-            var types = GetParameters(uri).Select(p => p.ParameterType).Append(GetReturnType(uri));
             Func<Type[], Type> getType = Expression.GetFuncType;
+            var types = GetParameters(uri)
+                .Select(p => p.ParameterType)
+                .Append(GetReturnType(uri));
+
             return getType(types.ToArray());
         }
 
