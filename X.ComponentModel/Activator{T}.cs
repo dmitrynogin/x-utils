@@ -17,7 +17,7 @@ namespace System
         {
             var arguments = uri.Query
                 .TrimStart('?')
-                .Split('&')
+                .Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(p => p.Split('='))
                 .ToDictionary(nv => nv[0], nv => Uri.UnescapeDataString(nv[1]));
 

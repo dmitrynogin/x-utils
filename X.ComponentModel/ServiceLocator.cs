@@ -46,7 +46,7 @@ namespace System
         static Dictionary<string, string> GetQuery(Uri uri) => 
             uri.Query
                 .TrimStart('?')
-                .Split('&')
+                .Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(p => p.Split('='))
                 .ToDictionary(nv => nv[0], nv => Uri.UnescapeDataString(nv[1]));
 
