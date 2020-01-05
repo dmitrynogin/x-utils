@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,6 +20,7 @@ namespace X.IoC.Tests
             builder.RegisterType<AutofacServiceProvider>()
                 .AsImplementedInterfaces();
 
+            builder.RegisterInstance(new NetworkCredential("anonymous", ""));
             builder.RegisterType<DiskFolder>();
             var container = builder.Build();
             var provider = container.Resolve<IServiceProvider>();
@@ -35,7 +37,7 @@ namespace X.IoC.Tests
 
     public class DiskFolder : ReadOnlyCollection<string>, IFolder
     {
-        public DiskFolder(string path)
+        public DiskFolder(string path, NetworkCredential credentials)
             : base(Directory.GetFiles(path))
         {
         }

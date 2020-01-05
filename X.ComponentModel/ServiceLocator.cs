@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -36,22 +37,29 @@ namespace System
 
         static object[] GetArguments(Uri uri)
         {
-            var arguments = uri.Query
+            var query = GetQuery(uri);
+            return GetParameters(uri)
+                .Select(p => Convert.ChangeType(query[p.Name], p.ParameterType))
+                .ToArray();
+        }
+
+        static Dictionary<string, string> GetQuery(Uri uri) => 
+            uri.Query
                 .TrimStart('?')
                 .Split('&')
                 .Select(p => p.Split('='))
                 .ToDictionary(nv => nv[0], nv => Uri.UnescapeDataString(nv[1]));
 
-            return GetParameters(uri)
-                .Select(p => Convert.ChangeType(arguments[p.Name], p.ParameterType))
-                .ToArray();
-        }
-
-        static ParameterInfo[] GetParameters(Uri uri) =>
-            GetReturnType(uri)
+        static ParameterInfo[] GetParameters(Uri uri)
+        {
+            var query = GetQuery(uri);
+            return GetReturnType(uri)
                 .GetConstructors()
                 .First()
-                .GetParameters();
+                .GetParameters()
+                .Where(p => query.ContainsKey(p.Name))
+                .ToArray();
+        }
 
         static Type GetReturnType(Uri uri) =>
             Type.GetType($"{uri.Segments[1]}, {uri.Host}");
