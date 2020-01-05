@@ -17,7 +17,7 @@ namespace System
 
         public static object GetService(this IServiceProvider provider, Uri uri)
         {
-            if (uri.Scheme != "locator")
+            if (uri.Scheme != "ioc")
                 throw new NotSupportedException("Schema not supported.");
 
             var factory = (Delegate)provider.GetService(GetFactory(uri));

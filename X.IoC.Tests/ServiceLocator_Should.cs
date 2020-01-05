@@ -23,7 +23,7 @@ namespace X.IoC.Tests
             var container = builder.Build();
             var provider = container.Resolve<IServiceProvider>();
             var folder = provider.GetService<IFolder>(
-                "locator://X.IoC.Tests/X.IoC.Tests.DiskFolder?path=\\Windows");
+                "ioc://X.IoC.Tests/X.IoC.Tests.DiskFolder?path=\\Windows");
 
             Assert.IsTrue(folder.Any());
         }
