@@ -9,9 +9,9 @@ namespace System
             CreateInstance(new Uri(uri));
 
         public static T CreateInstance(Uri uri) =>
-            uri.Scheme != "clr"
-            ? throw new NotSupportedException()
-            : (T)Activator.CreateInstance(GetReturnType(uri), GetArguments(uri));
+            uri.Scheme != "clr" ? throw new NotSupportedException() :
+            !typeof(T).IsAssignableFrom(GetReturnType(uri)) ? throw new InvalidCastException() :
+            (T)Activator.CreateInstance(GetReturnType(uri), GetArguments(uri));
 
         static object[] GetArguments(Uri uri)
         {

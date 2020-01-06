@@ -10,19 +10,16 @@ namespace System
         public static T GetService<T>(this IServiceProvider provider, string uri) =>
             provider.GetService<T>(new Uri(uri));
 
-        public static object GetService(this IServiceProvider provider, string uri) =>
-            provider.GetService(new Uri(uri));
-
-        public static T GetService<T>(this IServiceProvider provider, Uri uri) =>
-            (T)provider.GetService(uri);
-
-        public static object GetService(this IServiceProvider provider, Uri uri)
+        public static T GetService<T>(this IServiceProvider provider, Uri uri)
         {
             if (uri.Scheme != "ioc")
                 throw new NotSupportedException("Schema not supported.");
 
+            if (!typeof(T).IsAssignableFrom(GetReturnType(uri)))
+                throw new NotSupportedException();
+
             var factory = (Delegate)provider.GetService(GetFactory(uri));
-            return factory.DynamicInvoke(GetArguments(uri));
+            return (T)factory.DynamicInvoke(GetArguments(uri));
         }
 
         static Type GetFactory(Uri uri)
